@@ -23,23 +23,25 @@ public class OptionalPart implements CommandPart, SinglePartWrapper {
     private final CommandPart part;
     private final List<String> defaultValues;
     private final boolean considerInvalidAsEmpty;
+    private final boolean showSuggestions;
 
-    public OptionalPart(CommandPart part) {
-        this(part, true);
+    public OptionalPart(CommandPart part, boolean showSuggestions) {
+        this(part, true, showSuggestions);
     }
 
-    public OptionalPart(CommandPart part, boolean considerInvalidAsEmpty) {
-        this(part, considerInvalidAsEmpty, new ArrayList<>());
+    public OptionalPart(CommandPart part, boolean considerInvalidAsEmpty, boolean showSuggestions) {
+        this(part, considerInvalidAsEmpty, new ArrayList<>(), showSuggestions);
     }
 
-    public OptionalPart(CommandPart part, List<String> defaultValues) {
-        this(part, false, defaultValues);
+    public OptionalPart(CommandPart part, List<String> defaultValues, boolean showSuggestions) {
+        this(part, false, defaultValues, showSuggestions);
     }
 
-    public OptionalPart(CommandPart part, boolean considerInvalidAsEmpty, List<String> defaultValues) {
+    public OptionalPart(CommandPart part, boolean considerInvalidAsEmpty, List<String> defaultValues, boolean showSuggestions) {
         this.part = part;
         this.defaultValues = defaultValues;
         this.considerInvalidAsEmpty = considerInvalidAsEmpty;
+        this.showSuggestions = showSuggestions;
     }
 
     @Override
@@ -99,7 +101,7 @@ public class OptionalPart implements CommandPart, SinglePartWrapper {
 
     @Override
     public List<String> getSuggestions(CommandContext commandContext, ArgumentStack stack) {
-        return Collections.emptyList();
+        return showSuggestions ? part.getSuggestions(commandContext, stack) : Collections.emptyList();
     }
 
     @Override

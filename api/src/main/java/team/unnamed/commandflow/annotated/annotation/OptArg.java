@@ -17,4 +17,6 @@ public @interface OptArg {
 
     String[] value() default {};
 
+    boolean showSuggestions() default true;
+
 }

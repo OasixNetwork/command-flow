@@ -20,9 +20,9 @@ public class OptionalModifier implements PartModifier {
         }
 
         if (getModifier(modifiers, Strict.class) != null) {
-            return Parts.strictOptional(original, Arrays.asList(optional.value()));
+            return Parts.strictOptional(original, Arrays.asList(optional.value()), optional.showSuggestions());
         }
 
-        return Parts.optional(original,Arrays.asList(optional.value()));
+        return Parts.optional(original, Arrays.asList(optional.value()), optional.showSuggestions());
     }
 }

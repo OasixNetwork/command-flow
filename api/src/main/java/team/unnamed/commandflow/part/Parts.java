@@ -384,10 +384,11 @@ public final class Parts {
      * using this with a {@linkplain SubCommandPart} will cause lots of errors.
      *
      * @param part The {@link CommandPart} to make optional.
+     * @param showSuggestions Whether to parent suggestions.
      * @return The given {@link CommandPart} that will rewind the {@link ArgumentStack} when it can't be parsed.
      */
-    public static CommandPart optional(CommandPart part) {
-        return new OptionalPart(part);
+    public static CommandPart optional(CommandPart part, boolean showSuggestions) {
+        return new OptionalPart(part, showSuggestions);
     }
 
     /**
@@ -398,10 +399,11 @@ public final class Parts {
      *
      * @param part          The {@link CommandPart} to make optional.
      * @param defaultValues The list default values when the {@link ArgumentStack} can't be parsed
+     * @param showSuggestions Whether to parent suggestions.
      * @return The given {@link CommandPart} that will rewind the {@link ArgumentStack} when it can't be parsed.
      */
-    public static CommandPart optional(CommandPart part, List<String> defaultValues) {
-        return new OptionalPart(part, defaultValues);
+    public static CommandPart optional(CommandPart part, List<String> defaultValues, boolean showSuggestions) {
+        return new OptionalPart(part, defaultValues, showSuggestions);
     }
 
     /**
@@ -413,10 +415,11 @@ public final class Parts {
      * using this with a {@linkplain SubCommandPart} will cause lots of errors.
      *
      * @param part The {@link CommandPart} to make optional.
+     * @param showSuggestions Whether to parent suggestions.
      * @return The given {@link CommandPart} that will rewind the {@link ArgumentStack} when it can't be parsed.
      */
-    public static CommandPart strictOptional(CommandPart part) {
-        return new OptionalPart(part, false);
+    public static CommandPart strictOptional(CommandPart part, boolean showSuggestions) {
+        return new OptionalPart(part, false, showSuggestions);
     }
 
     /**
@@ -429,10 +432,11 @@ public final class Parts {
      *
      * @param part          The {@link CommandPart} to make optional.
      * @param defaultValues The list default values when the {@link ArgumentStack} can't be parsed
+     * @param showSuggestions Whether to parent suggestions.
      * @return The given {@link CommandPart} that will rewind the {@link ArgumentStack} when it can't be parsed.
      */
-    public static CommandPart strictOptional(CommandPart part, List<String> defaultValues) {
-        return new OptionalPart(part, false, defaultValues);
+    public static CommandPart strictOptional(CommandPart part, List<String> defaultValues, boolean showSuggestions) {
+        return new OptionalPart(part, false, defaultValues, showSuggestions);
     }
 
 }
