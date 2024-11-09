@@ -93,23 +93,12 @@ public class ValueFlagPart implements SinglePartWrapper {
     }
 
     private boolean parseValueFlag(CommandContext context, ArgumentStack stack) {
-        StackSnapshot beforeRemoveFlagStack = stack.getSnapshot();
-        ContextSnapshot beforeParseContext = context.getSnapshot();
-
         stack.remove();
         int oldArgumentsLeft = stack.getArgumentsLeft();
         StackSnapshot beforeParseStack = stack.getSnapshot();
 
         // parse the next parts
-        try {
-            part.parse(context, stack, this);
-        } catch (ArgumentParseException ex) {
-            // ignore
-            context.applySnapshot(beforeParseContext);
-            stack.applySnapshot(beforeRemoveFlagStack);
-
-            return false;
-        }
+        part.parse(context, stack, this);
 
         int usedArguments = oldArgumentsLeft - stack.getArgumentsLeft();
 
