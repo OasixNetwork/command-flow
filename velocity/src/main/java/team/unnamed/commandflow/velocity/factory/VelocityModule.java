@@ -1,6 +1,7 @@
 package team.unnamed.commandflow.velocity.factory;
 
 import com.velocitypowered.api.command.CommandSource;
+import com.velocitypowered.api.proxy.ConsoleCommandSource;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
@@ -22,5 +23,6 @@ public class VelocityModule extends AbstractModule {
         bindFactory(Player.class, new PlayerPartFactory(proxyServer));
         bindFactory(new Key(Player.class, Sender.class), new PlayerSenderPartFactory());
         bindFactory(RegisteredServer.class, new RegisteredServerPartFactory(proxyServer));
+        bindFactory(new Key(ConsoleCommandSource.class, Sender.class), new ConsoleCommandSourceSenderPartFactory());
     }
 }

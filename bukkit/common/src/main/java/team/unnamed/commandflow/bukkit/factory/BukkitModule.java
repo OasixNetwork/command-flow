@@ -20,6 +20,7 @@ public class BukkitModule extends AbstractModule {
         bindFactory(World.class, new WorldFactory());
         bindFactory(GameMode.class, new GameModeFactory());
         bindFactory(new Key(Player.class, Sender.class), new PlayerSenderFactory());
+        bindFactory(new Key(CommandSender.class, Sender.class), new ConsoleCommandSenderPartFactory());
     }
 
 }
