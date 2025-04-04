@@ -1,5 +1,6 @@
 package team.unnamed.commandflow.bukkit.factory;
 
+import org.bukkit.command.ConsoleCommandSender;
 import team.unnamed.commandflow.annotated.part.AbstractModule;
 import team.unnamed.commandflow.annotated.part.Key;
 import team.unnamed.commandflow.annotated.annotation.Sender;
@@ -20,7 +21,7 @@ public class BukkitModule extends AbstractModule {
         bindFactory(World.class, new WorldFactory());
         bindFactory(GameMode.class, new GameModeFactory());
         bindFactory(new Key(Player.class, Sender.class), new PlayerSenderFactory());
-        bindFactory(new Key(CommandSender.class, Sender.class), new ConsoleCommandSenderPartFactory());
+        bindFactory(new Key(ConsoleCommandSender.class, Sender.class), new ConsoleCommandSenderPartFactory());
     }
 
 }
